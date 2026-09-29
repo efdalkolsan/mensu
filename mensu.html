@@ -66,7 +66,7 @@
     .surprise::before,.surprise::after { content:"✦"; position:absolute; color:#fff; font-size:2rem; text-shadow:0 2px 8px rgba(207,65,119,.15); animation:twinkle 1.2s ease-in-out infinite alternate; }
     .surprise::before { top:15%; left:12%; } .surprise::after { right:12%; bottom:16%; animation-delay:-.65s; }
     .letter-scene { position:relative; width:310px; max-width:100%; height:340px; display:grid; place-items:center; perspective:900px; }
-    .letter-scene::before,.letter-scene::after { content:'♥'; position:absolute; top:57%; color:#ffb3cd; font-size:1.25rem; filter:drop-shadow(0 3px 2px rgba(200,80,123,.13)); animation:mini-float 2.6s ease-in-out infinite alternate; }
+    .letter-scene::before,.letter-scene::after { content:'🩷'; position:absolute; top:57%; color:#ffb3cd; font-size:1.25rem; filter:drop-shadow(0 3px 2px rgba(200,80,123,.13)); animation:mini-float 2.6s ease-in-out infinite alternate; }
     .letter-scene::before { left:7px; } .letter-scene::after { right:7px; animation-delay:-1.3s; }
     .envelope-letter { position:relative; width:264px; height:176px; border:3px solid rgba(255,255,255,.75); border-radius:0 0 21px 21px; background:linear-gradient(145deg,#ff9bc0 0%,#ff6f9f 52%,#ed548a 100%); box-shadow:0 17px 0 rgba(205,79,132,.16),0 23px 32px rgba(180,56,108,.24); overflow:visible; transition:transform .16s ease-out; }
     .envelope-letter::before,.envelope-letter::after { content:""; position:absolute; z-index:3; bottom:0; width:0; height:0; border-style:solid; }
@@ -78,7 +78,7 @@
     .seal { position:absolute; z-index:5; top:70px; left:106px; display:grid; place-items:center; width:52px; height:52px; padding:0; border:4px solid #fff4f8; border-radius:50%; background:linear-gradient(135deg,#ff79a7,#d93673); box-shadow:0 5px 0 #c83b6a,0 7px 12px rgba(170,43,94,.2); color:#fff; font-size:1.5rem; cursor:grab; touch-action:none; transition:opacity .22s ease,transform .15s ease; }
     .seal:active { cursor:grabbing; transform:scale(.94); } .seal:focus-visible { outline:3px solid #8b6eff; outline-offset:3px; }
     .opening-copy { position:relative; z-index:2; max-width:270px; margin:0; padding:.72rem .95rem; border:2px solid rgba(255,255,255,.92); border-radius:18px; background:linear-gradient(135deg,#fff7fb,#ffe2ee); box-shadow:0 7px 0 rgba(225,97,144,.16),0 10px 20px rgba(173,69,118,.12); color:#c34b7d; font-size:.92rem; font-weight:900; line-height:1.4; text-align:center; animation:soft-pulse 1.2s ease-in-out infinite; }
-    .opening-copy::before { content:'↑  ♥  ↑'; display:block; margin-bottom:.2rem; color:#ff6195; font-size:1.12rem; letter-spacing:.24em; }
+    .opening-copy::before { content:'↑  🩷  ↑'; display:block; margin-bottom:.2rem; color:#ff6195; font-size:1.12rem; letter-spacing:.24em; }
     .surprise.open .flap { transform:rotateX(180deg); z-index:0; } .surprise.open .seal { opacity:0; } .surprise.open .letter-paper { height:183px; transform:translateY(-80px); }
     .surprise.done .letter-scene,.surprise.done .opening-copy { animation:leave .4s ease forwards; }
     .confetti { position:absolute; z-index:8; width:10px; height:16px; border-radius:4px; pointer-events:none; animation:confetti-pop 1.15s cubic-bezier(.18,.75,.3,1) forwards; }
@@ -97,7 +97,7 @@
 <body>
   <div class="sky" aria-hidden="true"><div class="cloud one"></div><div class="cloud two"></div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div>
   <main class="game">
-    <header><p class="brand">M ♡ E</p><div class="lives" aria-label="sevgi kalpleri">♥ ♥ ♥</div></header>
+    <header><p class="brand">M ♡ E</p><div class="lives" aria-label="sevgi kalpleri">🩷 🩷 🩷</div></header>
     <div class="progress" aria-label="Oyun aşamaları"><span class="active"></span><span></span><span></span></div>
 
     <section class="stage active" id="stage-1">
@@ -116,22 +116,22 @@
       <p class="stage-number">✦ Aşama 3 / 3</p><h1>Sevgi kalplerini yakala</h1>
       <p class="intro">Minik kalbi yakala, her tıkladığında başka bir yere uçacak.</p>
       <span class="catch-count" id="catch-count">0 / 7 kalp yakalandı</span>
-      <div class="catch-zone" id="catch-zone"><span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span><span class="mini-heart mh1" aria-hidden="true">♥</span><span class="mini-heart mh2" aria-hidden="true">♥</span><span class="mini-heart mh3" aria-hidden="true">♥</span><button class="target" id="target" type="button" aria-label="Uçan kalbi yakala">♥</button></div>
+      <div class="catch-zone" id="catch-zone"><span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span><span class="mini-heart mh1" aria-hidden="true">🩷</span><span class="mini-heart mh2" aria-hidden="true">🩷</span><span class="mini-heart mh3" aria-hidden="true">🩷</span><button class="target" id="target" type="button" aria-label="Uçan kalbi yakala">🩷</button></div>
       <p class="tip" id="catch-tip">Haydi, yakala bakalım! 💗</p>
     </section>
 
     <section class="stage final" id="stage-final">
-      <div class="final-party" aria-hidden="true"><span class="party-piece p1">✦</span><span class="party-piece p2">✧</span><span class="party-piece p3">♥</span><span class="party-piece p4">✦</span><span class="party-piece p5">❀</span><span class="party-piece p6">♥</span></div>
-      <div class="final-heart">♥</div><p class="stage-number">Tebrikler, aşkım!</p><h1>Tebrikler aşkım!</h1>
-      <p class="intro">Her aşamada sana biraz daha hayran kaldım. İyi ki varsın, seni çoook seviyorum ♥</p><span class="ribbon">Mensure ♡ Efdal</span>
+      <div class="final-party" aria-hidden="true"><span class="party-piece p1">✦</span><span class="party-piece p2">✧</span><span class="party-piece p3">🩷</span><span class="party-piece p4">✦</span><span class="party-piece p5">❀</span><span class="party-piece p6">🩷</span></div>
+      <div class="final-heart">🩷</div><p class="stage-number">Tebrikler, aşkım!</p><h1>Tebrikler aşkım!</h1>
+      <p class="intro">Her aşamada sana biraz daha hayran kaldım. İyi ki varsın, seni çoook seviyorum 🩷</p><span class="ribbon">Mensure ♡ Efdal</span>
     </section>
 
     <div class="note" id="note" role="dialog" aria-modal="true" aria-labelledby="note-title">
-      <div class="note-card"><div class="note-icon" id="note-icon">♥</div><h2 id="note-title">Harikasın!</h2><p id="note-text"></p><button class="next" id="next" type="button">Devam et ✦</button></div>
+      <div class="note-card"><div class="note-icon" id="note-icon">🩷</div><h2 id="note-title">Harikasın!</h2><p id="note-text"></p><button class="next" id="next" type="button">Devam et ✦</button></div>
     </div>
     <div class="surprise" id="surprise" aria-live="polite" aria-label="Açılan kalpli mektup">
-      <div class="letter-scene"><div class="envelope-letter" id="envelope-letter"><div class="letter-paper"><strong>Mensure'ye</strong><span>Kalbimin sahibine… ♥</span></div><div class="flap"></div><button class="seal" id="seal" type="button" aria-label="Kalp mührünü basılı tutup yukarı kaydır">♥</button></div></div>
-      <p class="opening-copy" id="opening-copy">Zarfı açmak için kalp mührüne basılı tutarak yukarı kaydır ♥</p>
+      <div class="letter-scene"><div class="envelope-letter" id="envelope-letter"><div class="letter-paper"><strong>Mensure'ye</strong><span>Kalbimin sahibine… 🩷</span></div><div class="flap"></div><button class="seal" id="seal" type="button" aria-label="Kalp mührünü basılı tutup yukarı kaydır">🩷</button></div></div>
+      <p class="opening-copy" id="opening-copy">Zarfı açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷</p>
     </div>
   </main>
   <script>
@@ -153,16 +153,16 @@
       { title: 'Tüm kalpler senin!', icon: '💌', text: 'Bu minik oyunun sonuna geldin, ama sana olan sevgim her gün yeniden başlayan en güzel macera.' }
     ];
     function launchConfetti() { const colors=['#ff6397','#ff9fbd','#ffd66e','#d9a5ff','#ffcee0']; for (let i=0;i<32;i++) { const piece=document.createElement('i'); piece.className='confetti'; piece.style.left='50%'; piece.style.top='42%'; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*460}px`); piece.style.setProperty('--y',`${Math.random()*260+55}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*720}deg`); piece.style.animationDelay=`${Math.random()*.14}s`; document.querySelector('.game').appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
-    function showNote(index) { launchConfetti(); const m = messages[index]; noteTitle.textContent = m.title; noteText.textContent = m.text; noteIcon.textContent = m.icon; next.textContent = index === 2 ? 'Sürprizi aç ♥' : 'Sonraki aşama ✦'; note.classList.add('show'); next.focus(); }
+    function showNote(index) { launchConfetti(); const m = messages[index]; noteTitle.textContent = m.title; noteText.textContent = m.text; noteIcon.textContent = m.icon; next.textContent = index === 2 ? 'Sürprizi aç 🩷' : 'Sonraki aşama ✦'; note.classList.add('show'); next.focus(); }
     function goTo(stageNumber) { currentStage = stageNumber; stages.forEach(s => s.classList.remove('active')); document.querySelector(`#stage-${stageNumber}`).classList.add('active'); progress.forEach((p,i) => p.classList.toggle('active', i < stageNumber)); }
     let finalConfettiTimer;
     function launchFinalConfetti() { const finalStage=document.querySelector('#stage-final'); const colors=['#ff6195','#ff9fbd','#ffd66e','#caa1ff','#fff']; for (let i=0;i<20;i++) { const piece=document.createElement('i'); piece.className='final-confetti'; piece.style.left=`${38+Math.random()*24}%`; piece.style.top=`${20+Math.random()*25}%`; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*360}px`); piece.style.setProperty('--y',`${Math.random()*290+110}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*700}deg`); piece.style.animationDelay=`${Math.random()*.12}s`; finalStage.appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
     function showFinal() { launchConfetti(); clearInterval(finalConfettiTimer); stages.forEach(s => s.classList.remove('active')); document.querySelector('#stage-final').classList.add('active'); progress.forEach(p => p.classList.add('active')); launchFinalConfetti(); finalConfettiTimer=setInterval(launchFinalConfetti,950); }
-    function openSurprise() { opened=false; envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Zarfı açmak için kalp mührüne basılı tutarak yukarı kaydır. ♥'; surprise.classList.add('show'); }
+    function openSurprise() { opened=false; envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Zarfı açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷'; surprise.classList.add('show'); }
     let pulling=false, startY=0, opened=false;
     seal.addEventListener('pointerdown', event => { if (opened) return; pulling=true; startY=event.clientY; seal.setPointerCapture(event.pointerId); openingCopy.textContent='Harika gidiyor… biraz daha yukarı! ✦'; });
     seal.addEventListener('pointermove', event => { if (!pulling || opened) return; const distance=Math.max(0,Math.min(96,startY-event.clientY)); envelopeLetter.style.transform=`translateY(-${distance}px)`; if (distance>62) finishEnvelope(); });
-    function stopPulling() { pulling=false; if (!opened) { envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Kalp mührüne basılı tutup yukarı kaydır. ♥'; } }
+    function stopPulling() { pulling=false; if (!opened) { envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Kalp mührüne basılı tutup yukarı kaydır 🩷'; } }
     seal.addEventListener('pointerup',stopPulling); seal.addEventListener('pointercancel',stopPulling);
     function finishEnvelope() { if (opened) return; opened=true; pulling=false; envelopeLetter.style.transform='translateY(-68px)'; surprise.classList.add('open'); openingCopy.textContent='Mektubun açıldı… içi sevgi dolu! 💌'; launchConfetti(); setTimeout(() => surprise.classList.add('done'),3000); setTimeout(() => { surprise.classList.remove('show','open','done'); showFinal(); },3380); }
     next.addEventListener('click', () => { note.classList.remove('show'); if (currentStage < 3) goTo(currentStage + 1); else openSurprise(); });
@@ -188,7 +188,7 @@
 
     const target = document.querySelector('#target'); const zone = document.querySelector('#catch-zone'); let catches = 0;
     function moveTarget() { const x=Math.max(8,Math.random()*(zone.clientWidth-74)); const y=Math.max(8,Math.random()*(zone.clientHeight-74)); target.style.left=`${x}px`; target.style.top=`${y}px`; }
-    function makeBurst() { const rect=target.getBoundingClientRect(), zoneRect=zone.getBoundingClientRect(); for (let i=0;i<8;i++) { const sparkle=document.createElement('span'); sparkle.className='burst'; sparkle.textContent=i%2?'✦':'♥'; sparkle.style.left=`${rect.left-zoneRect.left+28}px`; sparkle.style.top=`${rect.top-zoneRect.top+24}px`; sparkle.style.setProperty('--x',`${(Math.random()-.5)*100}px`); sparkle.style.setProperty('--y',`${(Math.random()-.5)*90}px`); zone.appendChild(sparkle); sparkle.addEventListener('animationend',()=>sparkle.remove()); } }
+    function makeBurst() { const rect=target.getBoundingClientRect(), zoneRect=zone.getBoundingClientRect(); for (let i=0;i<8;i++) { const sparkle=document.createElement('span'); sparkle.className='burst'; sparkle.textContent=i%2?'✦':'🩷'; sparkle.style.left=`${rect.left-zoneRect.left+28}px`; sparkle.style.top=`${rect.top-zoneRect.top+24}px`; sparkle.style.setProperty('--x',`${(Math.random()-.5)*100}px`); sparkle.style.setProperty('--y',`${(Math.random()-.5)*90}px`); zone.appendChild(sparkle); sparkle.addEventListener('animationend',()=>sparkle.remove()); } }
     target.addEventListener('animationend', event => { if (event.animationName === 'catch-pop') target.classList.remove('caught'); });
     target.addEventListener('click', () => { catches++; target.disabled=true; makeBurst(); target.classList.remove('caught'); void target.offsetWidth; target.classList.add('caught'); const counter=document.querySelector('#catch-count'); counter.textContent=`${catches} / 7 kalp yakalandı`; counter.animate([{transform:'scale(1)'},{transform:'scale(1.13)',background:'#fff0b7'},{transform:'scale(1)'}],{duration:330}); if (catches===7) { setTimeout(() => { target.style.display='none'; document.querySelector('#catch-tip').textContent='Tüm kalpleri yakaladın! 💖'; showNote(2); },340); } else { setTimeout(() => { moveTarget(); target.disabled=false; },400); } });
     window.addEventListener('load',moveTarget);
