@@ -168,7 +168,7 @@
     next.addEventListener('click', () => { note.classList.remove('show'); if (currentStage < 3) goTo(currentStage + 1); else openSurprise(); });
 
     const board = document.querySelector('#memory-board');
-    const icons = ['🌸','🧸','🍓','🌸','🧸','🍓'].sort(() => Math.random() - .5);
+    const icons = ['🦢','🐬','🐥','🦢','🐬','🐥'].sort(() => Math.random() - .5);
     let flipped = [], matched = 0, locked = false;
     icons.forEach((icon,index) => { const card = document.createElement('button'); card.className='memory-card'; card.type='button'; card.dataset.icon=icon; card.setAttribute('aria-label','Hafıza kartı'); card.textContent=icon; card.addEventListener('click', () => flipCard(card)); board.appendChild(card); });
     function flipCard(card) {
