@@ -29,6 +29,15 @@
     .progress span.active { background:linear-gradient(90deg,#ff8fb3,#ff6497); box-shadow:0 3px 8px rgba(255,99,153,.25); }
     .stage { position:relative; z-index:1; display:none; text-align:center; animation:pop .38s ease both; }
     .stage.active { display:block; }
+    .welcome.active { min-height:500px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .welcome-orbit { position:relative; display:grid; place-items:center; width:170px; height:150px; margin:0 auto .85rem; }
+    .welcome-orbit::before { content:""; position:absolute; inset:13px 0; border:2px dashed #f5a7c4; border-radius:50%; transform:rotate(-16deg) scaleY(.55); animation:orbit 8s linear infinite; }
+    .welcome-heart { position:relative; z-index:1; display:grid; place-items:center; width:93px; height:93px; border:6px solid #fff; border-radius:50%; background:linear-gradient(135deg,#ffc2d6,#ff74a3); box-shadow:0 9px 0 rgba(221,86,135,.16),0 13px 25px rgba(213,71,126,.2); color:#fff; font-size:3.2rem; animation:beat 1.3s ease-in-out infinite; }
+    .welcome-orbit span { position:absolute; color:#ff76a6; font-size:1.25rem; animation:mini-float 2s ease-in-out infinite alternate; } .welcome-orbit span:first-child { top:15px; right:12px; } .welcome-orbit span:last-child { bottom:17px; left:8px; color:#be91f1; animation-delay:-.8s; }
+    .welcome h1 { margin:.3rem 0 .55rem; font-family:Pacifico,cursive; font-size:clamp(2.2rem,9vw,3.2rem); font-weight:400; color:var(--deep); }
+    .welcome .intro { max-width:365px; margin-bottom:1.35rem; font-size:1.02rem; }
+    .start-game { border:0; border-radius:17px; padding:1rem 1.45rem; background:linear-gradient(135deg,#ff81ab,#ff5b91); box-shadow:0 6px 0 #db4d7f,0 11px 18px rgba(225,88,138,.2); color:#fff; font:900 1rem Nunito,sans-serif; cursor:pointer; transition:transform .16s ease; }
+    .start-game:hover { transform:translateY(-3px) rotate(-1deg); } .start-game:active { transform:translateY(2px); }
     .stage-number { display:inline-flex; align-items:center; gap:.38rem; margin:0; padding:.35rem .8rem; border-radius:999px; background:#ffe8f0; color:var(--deep); font-size:.76rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
     h1 { margin:.7rem 0 .35rem; font-size:clamp(1.7rem,6vw,2.2rem); line-height:1.15; color:#61354e; }
     .intro { max-width:420px; margin:0 auto 1.45rem; color:#8e647a; font-size:.98rem; line-height:1.5; }
@@ -38,15 +47,18 @@
     .memory-card::after { content:'♡'; position:absolute; inset:0; display:grid; place-items:center; color:#f39aba; font-size:1.5rem; }
     .memory-card:hover { transform:translateY(-3px); } .memory-card:focus-visible,.letter:focus-visible,.target:focus-visible,.next:focus-visible { outline:3px solid #8b6eff; outline-offset:3px; }
     .memory-card.open,.memory-card.matched { color:#63334c; background:#fff; } .memory-card.open::after,.memory-card.matched::after { display:none; } .memory-card.matched { background:#dcf8d7; box-shadow:0 5px 0 #b3e7ac; transform:scale(.96); }
-    .word-slots { display:flex; justify-content:center; gap:.42rem; margin:1.2rem 0 1rem; }
+    .word-slots { position:relative; display:flex; justify-content:center; width:fit-content; max-width:100%; gap:.42rem; margin:1.2rem auto 1rem; }
     .slot { display:grid; place-items:center; width:42px; height:50px; border-radius:13px; border:2px dashed #f4b3cb; background:#fff5f9; color:var(--deep); font-size:1.35rem; font-weight:900; }
     .letter-bank { display:flex; flex-wrap:wrap; justify-content:center; gap:.62rem; max-width:390px; margin:auto; }
     .letter { width:49px; height:49px; border:0; border-radius:15px; background:linear-gradient(135deg,#ff9fbd,#ff6796); box-shadow:0 5px 0 #e55587; color:#fff; font:900 1.25rem Nunito,sans-serif; cursor:pointer; transition:.15s ease; }
     .letter:hover { transform:translateY(-3px) rotate(-3deg); } .letter.used { visibility:hidden; }
+    .letter.used { visibility:visible; pointer-events:none; animation:letter-disappear .42s cubic-bezier(.2,.8,.25,1) forwards; }
+    .slot.filled { border-style:solid; border-color:#ff9abd; background:#fff; box-shadow:0 5px 0 #f6c0d4; animation:slot-land .48s cubic-bezier(.2,1.4,.3,1) both; }
+    .letter-sparkle { position:absolute; z-index:4; color:#ff78a6; font-size:1rem; pointer-events:none; animation:letter-sparkle .62s cubic-bezier(.2,.8,.2,1) forwards; }
     .catch-zone { position:relative; width:min(100%,400px); height:244px; margin:1rem auto 0; border:2px dashed #e7c0df; border-radius:26px; background:radial-gradient(circle at 78% 16%,#fff 0 2px,transparent 3px),radial-gradient(circle at 23% 68%,#fff 0 2px,transparent 3px),linear-gradient(145deg,#fff3f8,#f7eaff); background-size:auto,auto,auto; overflow:hidden; }
     .catch-zone::before { content:""; position:absolute; width:170px; height:44px; bottom:-8px; left:-12px; border-radius:60% 60% 0 0; background:rgba(255,255,255,.52); box-shadow:175px 18px 0 12px rgba(255,255,255,.4); }
     .catch-count { display:inline-block; margin-top:.85rem; padding:.34rem .78rem; border-radius:99px; background:#fff; color:#9c6983; font-size:.88rem; font-weight:800; transition:transform .2s ease,background .2s ease; }
-    .target { position:absolute; z-index:2; width:66px; height:61px; border:0; border-radius:50%; background:radial-gradient(circle at 34% 28%,#fff7fb 0 4%,transparent 5%),linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,255,255,.13)); color:#ff5e94; font-size:3.35rem; line-height:.82; cursor:pointer; filter:drop-shadow(0 7px 5px rgba(215,66,120,.25)); transition:left .42s cubic-bezier(.22,1.25,.42,1),top .42s cubic-bezier(.22,1.25,.42,1),transform .18s ease; animation:heart-float 1.35s ease-in-out infinite alternate; }
+    .target { position:absolute; z-index:2; width:66px; height:61px; border:0; border-radius:50%; background:radial-gradient(circle at 34% 28%,#fff7fb 0 4%,transparent 5%),linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,255,255,.13)); color:#ff5e94; font-size:3rem; line-height:.82; cursor:pointer; filter:drop-shadow(0 7px 5px rgba(215,66,120,.25)); transition:left .42s cubic-bezier(.22,1.25,.42,1),top .42s cubic-bezier(.22,1.25,.42,1),transform .18s ease; animation:heart-float 1.35s ease-in-out infinite alternate; }
     .target::before { content:""; position:absolute; inset:2px; border:1px solid rgba(255,255,255,.8); border-radius:50%; }
     .target:hover { transform:scale(1.14) rotate(-5deg); } .target:active { transform:scale(.86); }
     .target.caught { animation:catch-pop .38s ease both; }
@@ -78,7 +90,7 @@
     .seal { position:absolute; z-index:5; top:70px; left:106px; display:grid; place-items:center; width:52px; height:52px; padding:0; border:4px solid #fff4f8; border-radius:50%; background:linear-gradient(135deg,#ff79a7,#d93673); box-shadow:0 5px 0 #c83b6a,0 7px 12px rgba(170,43,94,.2); color:#fff; font-size:1.5rem; cursor:grab; touch-action:none; transition:opacity .22s ease,transform .15s ease; }
     .seal:active { cursor:grabbing; transform:scale(.94); } .seal:focus-visible { outline:3px solid #8b6eff; outline-offset:3px; }
     .opening-copy { position:relative; z-index:2; max-width:270px; margin:0; padding:.72rem .95rem; border:2px solid rgba(255,255,255,.92); border-radius:18px; background:linear-gradient(135deg,#fff7fb,#ffe2ee); box-shadow:0 7px 0 rgba(225,97,144,.16),0 10px 20px rgba(173,69,118,.12); color:#c34b7d; font-size:.92rem; font-weight:900; line-height:1.4; text-align:center; animation:soft-pulse 1.2s ease-in-out infinite; }
-    .opening-copy::before { content:'↑  🩷  ↑'; display:block; margin-bottom:.2rem; color:#ff6195; font-size:1.12rem; letter-spacing:.24em; }
+    .opening-copy::before { content:'↑  💌  ↑'; display:block; margin-bottom:.2rem; color:#ff6195; font-size:1.12rem; letter-spacing:.24em; }
     .surprise.open .flap { transform:rotateX(180deg); z-index:0; } .surprise.open .seal { opacity:0; } .surprise.open .letter-paper { height:183px; transform:translateY(-80px); }
     .surprise.done .letter-scene,.surprise.done .opening-copy { animation:leave .4s ease forwards; }
     .confetti { position:absolute; z-index:8; width:10px; height:16px; border-radius:4px; pointer-events:none; animation:confetti-pop 1.15s cubic-bezier(.18,.75,.3,1) forwards; }
@@ -89,7 +101,7 @@
     .final .stage-number { position:relative; z-index:1; background:#fff0b7; color:#a67328; } .final h1 { position:relative; z-index:1; margin-top:.8rem; font-family:Pacifico,cursive; font-weight:400; color:var(--deep); } .final .intro { position:relative; z-index:1; max-width:390px; padding:.9rem 1rem; border-radius:18px; background:rgba(255,255,255,.72); box-shadow:0 5px 14px rgba(205,88,136,.1); color:#86566d; font-size:1.03rem; font-weight:700; }
     .ribbon { position:relative; z-index:1; display:inline-block; margin-top:.55rem; padding:.48rem 1rem; border:2px solid #fff; border-radius:12px; background:#fff0b8; box-shadow:0 4px 0 rgba(207,155,55,.14); color:#9c6c28; font-size:.82rem; font-weight:900; transform:rotate(-2deg); }
     .final-confetti { position:absolute; z-index:3; width:10px; height:16px; border-radius:4px; pointer-events:none; animation:final-confetti 1.75s cubic-bezier(.14,.75,.25,1) forwards; }
-    @keyframes twinkle { to { transform:scale(1.35) rotate(15deg); opacity:.25; } } @keyframes pop { from { opacity:0; transform:scale(.96) translateY(8px); } to { opacity:1; transform:none; } } @keyframes fade { from { opacity:0; } to { opacity:1; } } @keyframes heart-float { to { transform:translateY(-12px) rotate(7deg); } } @keyframes bubble { to { transform:translateY(-12px); opacity:.3; } } @keyframes mini-float { to { transform:translateY(-13px) rotate(10deg); } } @keyframes catch-pop { 45% { transform:scale(1.55) rotate(15deg); opacity:.2; } 100% { transform:scale(.45); opacity:0; } } @keyframes burst { from { transform:translate(0,0) scale(.6) rotate(0); opacity:1; } to { transform:translate(var(--x),var(--y)) scale(1.25) rotate(80deg); opacity:0; } } @keyframes soft-pulse { 50% { transform:scale(1.06); opacity:.65; } } @keyframes leave { to { transform:scale(.8); opacity:0; } } @keyframes confetti-pop { 0% { transform:translate(0,0) rotate(0) scale(1); opacity:1; } 100% { transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(.7); opacity:0; } } @keyframes party-dance { to { transform:translateY(-12px) rotate(14deg) scale(1.13); } } @keyframes final-confetti { 0% { transform:translate(0,0) rotate(0) scale(1); opacity:1; } 100% { transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(.6); opacity:0; } } @keyframes beat { 50% { transform:scale(1.12); } }
+    @keyframes twinkle { to { transform:scale(1.35) rotate(15deg); opacity:.25; } } @keyframes pop { from { opacity:0; transform:scale(.96) translateY(8px); } to { opacity:1; transform:none; } } @keyframes fade { from { opacity:0; } to { opacity:1; } } @keyframes heart-float { to { transform:translateY(-12px) rotate(7deg); } } @keyframes bubble { to { transform:translateY(-12px); opacity:.3; } } @keyframes mini-float { to { transform:translateY(-13px); } } @keyframes catch-pop { 45% { transform:scale(1.55) rotate(15deg); opacity:.2; } 100% { transform:scale(.45); opacity:0; } } @keyframes burst { from { transform:translate(0,0) scale(.6) rotate(0); opacity:1; } to { transform:translate(var(--x),var(--y)) scale(1.25) rotate(80deg); opacity:0; } } @keyframes soft-pulse { 50% { transform:scale(1.06); opacity:.65; } } @keyframes leave { to { transform:scale(.8); opacity:0; } } @keyframes confetti-pop { 0% { transform:translate(0,0) rotate(0) scale(1); opacity:1; } 100% { transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(.7); opacity:0; } } @keyframes party-dance { to { transform:translateY(-12px) rotate(14deg) scale(1.13); } } @keyframes final-confetti { 0% { transform:translate(0,0) rotate(0) scale(1); opacity:1; } 100% { transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(.6); opacity:0; } } @keyframes letter-disappear { 0% { opacity:1; transform:scale(1) rotate(0); } 100% { opacity:0; transform:scale(.15) rotate(24deg); } } @keyframes slot-land { 0% { transform:translateY(-25px) scale(1.35); opacity:.1; } 65% { transform:translateY(3px) scale(.94); } 100% { transform:none; opacity:1; } } @keyframes letter-sparkle { from { transform:translate(0,0) scale(.4) rotate(0); opacity:1; } to { transform:translate(var(--x),var(--y)) scale(1.35) rotate(75deg); opacity:0; } } @keyframes beat { 50% { transform:scale(1.12); } }
     @media (max-width:440px) { .game { min-height:640px; margin:0; border-radius:0; } .memory-board { gap:.55rem; } .memory-card { border-radius:16px; } .letter { width:43px; height:46px; } .slot { width:38px; } }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
   </style>
@@ -98,9 +110,16 @@
   <div class="sky" aria-hidden="true"><div class="cloud one"></div><div class="cloud two"></div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div>
   <main class="game">
     <header><p class="brand">M ♡ E</p><div class="lives" aria-label="sevgi kalpleri">🩷 🩷 🩷</div></header>
-    <div class="progress" aria-label="Oyun aşamaları"><span class="active"></span><span></span><span></span></div>
+    <div class="progress" aria-label="Oyun aşamaları"><span></span><span></span><span></span></div>
 
-    <section class="stage active" id="stage-1">
+    <section class="stage welcome active" id="welcome">
+      <div class="welcome-orbit" aria-hidden="true"><span>✦</span><div class="welcome-heart">🩷</div><span>✧</span></div>
+      <p class="stage-number">Mensure'me özel 🐥</p><h1>Omg Bu Neee?</h1>
+      <p class="intro">Aşkıma özel hazırlamış olduğum oyun.</p>
+      <button class="start-game" id="start-game" type="button">Oyuna Başla</button>
+    </section>
+
+    <section class="stage" id="stage-1">
       <p class="stage-number">✦ Aşama 1 / 3</p><h1>Kalpleri eşleştir</h1>
       <p class="intro">Aynı tatlı simgeleri eşleştirerek küçük bulmacayı tamamla.</p>
       <div class="memory-board" id="memory-board" aria-label="Hafıza kartları"></div><p class="tip" id="memory-tip">Kartları çevir ve eşlerini bul ♡</p>
@@ -122,15 +141,15 @@
 
     <section class="stage final" id="stage-final">
       <div class="final-party" aria-hidden="true"><span class="party-piece p1">✦</span><span class="party-piece p2">✧</span><span class="party-piece p3">🩷</span><span class="party-piece p4">✦</span><span class="party-piece p5">❀</span><span class="party-piece p6">🩷</span></div>
-      <div class="final-heart">🩷</div><p class="stage-number">Tebrikler, aşkım!</p><h1>Tebrikler aşkım!</h1>
-      <p class="intro">Her aşamada sana biraz daha hayran kaldım. İyi ki varsın, seni çoook seviyorum 🩷</p><span class="ribbon">Mensure ♡ Efdal</span>
+      <div class="final-heart">💌</div><p class="stage-number">Tebrikler, aşkım!</p><h1>Tebrikler Aşkım!</h1>
+      <p class="intro">Her aşamada sana biraz daha hayran kaldım. İyi ki varsın seni çoook seviyorum 🩷</p><span class="ribbon">Mensure ♡ Efdal</span>
     </section>
 
     <div class="note" id="note" role="dialog" aria-modal="true" aria-labelledby="note-title">
       <div class="note-card"><div class="note-icon" id="note-icon">🩷</div><h2 id="note-title">Harikasın!</h2><p id="note-text"></p><button class="next" id="next" type="button">Devam et ✦</button></div>
     </div>
     <div class="surprise" id="surprise" aria-live="polite" aria-label="Açılan kalpli mektup">
-      <div class="letter-scene"><div class="envelope-letter" id="envelope-letter"><div class="letter-paper"><strong>Mensure'ye</strong><span>Kalbimin sahibine… 🩷</span></div><div class="flap"></div><button class="seal" id="seal" type="button" aria-label="Kalp mührünü basılı tutup yukarı kaydır">🩷</button></div></div>
+      <div class="letter-scene"><div class="envelope-letter" id="envelope-letter"><div class="letter-paper"><strong>Mensure'ye</strong><span>Kalbimin sahibine… 🩷</span></div><div class="flap"></div><button class="seal" id="seal" type="button" aria-label="Kalp mührünü basılı tutup yukarı kaydır">💌</button></div></div>
       <p class="opening-copy" id="opening-copy">Zarfı açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷</p>
     </div>
   </main>
@@ -146,7 +165,8 @@
     const openingCopy = document.querySelector('#opening-copy');
     const envelopeLetter = document.querySelector('#envelope-letter');
     const seal = document.querySelector('#seal');
-    let currentStage = 1;
+    const startGame = document.querySelector('#start-game');
+    let currentStage = 0;
     const messages = [
       { title: 'Kalbin çok güzel!', icon: '🌷', text: 'İlk bulmacayı sevgin kadar tatlı bir şekilde tamamladın. Sen gülünce her şey daha güzel oluyor.' },
       { title: 'İsmin bile güzel!', icon: '✨', text: 'Mensure… Bu ismi her duyduğumda içimde sıcacık bir mutluluk beliriyor. İyi ki hayatımdasın.' },
@@ -155,6 +175,7 @@
     function launchConfetti() { const colors=['#ff6397','#ff9fbd','#ffd66e','#d9a5ff','#ffcee0']; for (let i=0;i<32;i++) { const piece=document.createElement('i'); piece.className='confetti'; piece.style.left='50%'; piece.style.top='42%'; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*460}px`); piece.style.setProperty('--y',`${Math.random()*260+55}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*720}deg`); piece.style.animationDelay=`${Math.random()*.14}s`; document.querySelector('.game').appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
     function showNote(index) { launchConfetti(); const m = messages[index]; noteTitle.textContent = m.title; noteText.textContent = m.text; noteIcon.textContent = m.icon; next.textContent = index === 2 ? 'Sürprizi aç 🩷' : 'Sonraki aşama ✦'; note.classList.add('show'); next.focus(); }
     function goTo(stageNumber) { currentStage = stageNumber; stages.forEach(s => s.classList.remove('active')); document.querySelector(`#stage-${stageNumber}`).classList.add('active'); progress.forEach((p,i) => p.classList.toggle('active', i < stageNumber)); }
+    startGame.addEventListener('click', () => goTo(1));
     let finalConfettiTimer;
     function launchFinalConfetti() { const finalStage=document.querySelector('#stage-final'); const colors=['#ff6195','#ff9fbd','#ffd66e','#caa1ff','#fff']; for (let i=0;i<20;i++) { const piece=document.createElement('i'); piece.className='final-confetti'; piece.style.left=`${38+Math.random()*24}%`; piece.style.top=`${20+Math.random()*25}%`; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*360}px`); piece.style.setProperty('--y',`${Math.random()*290+110}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*700}deg`); piece.style.animationDelay=`${Math.random()*.12}s`; finalStage.appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
     function showFinal() { launchConfetti(); clearInterval(finalConfettiTimer); stages.forEach(s => s.classList.remove('active')); document.querySelector('#stage-final').classList.add('active'); progress.forEach(p => p.classList.add('active')); launchFinalConfetti(); finalConfettiTimer=setInterval(launchFinalConfetti,950); }
@@ -164,7 +185,7 @@
     seal.addEventListener('pointermove', event => { if (!pulling || opened) return; const distance=Math.max(0,Math.min(96,startY-event.clientY)); envelopeLetter.style.transform=`translateY(-${distance}px)`; if (distance>62) finishEnvelope(); });
     function stopPulling() { pulling=false; if (!opened) { envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Kalp mührüne basılı tutup yukarı kaydır 🩷'; } }
     seal.addEventListener('pointerup',stopPulling); seal.addEventListener('pointercancel',stopPulling);
-    function finishEnvelope() { if (opened) return; opened=true; pulling=false; envelopeLetter.style.transform='translateY(-68px)'; surprise.classList.add('open'); openingCopy.textContent='Mektubun açıldı… içi sevgi dolu! 💌'; launchConfetti(); setTimeout(() => surprise.classList.add('done'),3000); setTimeout(() => { surprise.classList.remove('show','open','done'); showFinal(); },3380); }
+    function finishEnvelope() { if (opened) return; opened=true; pulling=false; envelopeLetter.style.transform='translateY(-68px)'; surprise.classList.add('open'); openingCopy.textContent='Mektubun açıldı… içi sevgi dolu! 🩷'; launchConfetti(); setTimeout(() => surprise.classList.add('done'),3000); setTimeout(() => { surprise.classList.remove('show','open','done'); showFinal(); },3380); }
     next.addEventListener('click', () => { note.classList.remove('show'); if (currentStage < 3) goTo(currentStage + 1); else openSurprise(); });
 
     const board = document.querySelector('#memory-board');
@@ -184,7 +205,8 @@
     const answer = 'MENSURE'; const slots = document.querySelector('#word-slots'); const bank = document.querySelector('#letter-bank'); let letterIndex = 0;
     answer.split('').forEach(() => { const slot=document.createElement('span'); slot.className='slot'; slot.textContent=''; slots.appendChild(slot); });
     answer.split('').sort(() => Math.random() - .5).forEach(letter => { const button=document.createElement('button'); button.className='letter'; button.type='button'; button.textContent=letter; button.addEventListener('click',() => chooseLetter(button,letter)); bank.appendChild(button); });
-    function chooseLetter(button,letter) { const tip=document.querySelector('#word-tip'); if (letter === answer[letterIndex]) { slots.children[letterIndex].textContent=letter; button.classList.add('used'); letterIndex++; if (letterIndex===answer.length) { tip.textContent='Mensure! Tam isabet. 💕'; setTimeout(() => showNote(1),400); } } else { tip.textContent='Bu harf henüz sırasını bekliyor. Küçük bir ipucu: sıraya dikkat et. 🌼'; button.animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:270}); } }
+    function makeLetterSparkles(slot) { const host=document.querySelector('#stage-2'), slotRect=slot.getBoundingClientRect(), hostRect=host.getBoundingClientRect(); for (let i=0;i<7;i++) { const sparkle=document.createElement('span'); sparkle.className='letter-sparkle'; sparkle.textContent=i%2?'✦':'♥'; sparkle.style.left=`${slotRect.left-hostRect.left+slotRect.width/2}px`; sparkle.style.top=`${slotRect.top-hostRect.top+slotRect.height/2}px`; sparkle.style.setProperty('--x',`${(Math.random()-.5)*74}px`); sparkle.style.setProperty('--y',`${(Math.random()-.5)*68}px`); host.appendChild(sparkle); sparkle.addEventListener('animationend',()=>sparkle.remove()); } }
+    function chooseLetter(button,letter) { const tip=document.querySelector('#word-tip'); if (letter === answer[letterIndex]) { const slot=slots.children[letterIndex]; slot.textContent=letter; slot.classList.add('filled'); makeLetterSparkles(slot); button.classList.add('used'); letterIndex++; if (letterIndex===answer.length) { tip.textContent='Mensure! İşte bu 💕'; setTimeout(() => showNote(1),560); } } else { tip.textContent='Bu harf henüz sırasını bekliyor. Küçük bir ipucu: sıraya dikkat et. 🌼'; button.animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:270}); } }
 
     const target = document.querySelector('#target'); const zone = document.querySelector('#catch-zone'); let catches = 0;
     function moveTarget() { const x=Math.max(8,Math.random()*(zone.clientWidth-74)); const y=Math.max(8,Math.random()*(zone.clientHeight-74)); target.style.left=`${x}px`; target.style.top=`${y}px`; }
