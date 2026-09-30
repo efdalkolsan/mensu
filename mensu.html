@@ -176,7 +176,7 @@
     const messages = [
       { title: 'Kalbin çok güzel!', icon: '🌷', text: 'İlk bulmacayı sevgin kadar tatlı bir şekilde tamamladın. Sen gülünce her şey daha güzel oluyor.' },
       { title: 'İsmin bile güzel!', icon: '✨', text: 'Mensure… Bu ismi her duyduğumda içimde sıcacık bir mutluluk beliriyor. İyi ki hayatımdasın.' },
-      { title: 'Tüm kalpler senin!', icon: '💌', text: 'Bu minik oyunun sonuna geldin, ama sana olan sevgim her gün daha da kuvvetleniyor. O zaman şimdi sürpriz mektubunu açmanın tam zamanı.' }
+      { title: 'Tüm kalpler senin!', icon: '💌', text: 'Bu minik oyunun sonuna geldin ama sana olan sevgimin asla. O zaman şimdi sürpriz mektubunu açmanın tam zamanı.' }
     ];
     function launchConfetti() { const colors=['#ff6397','#ff9fbd','#ffd66e','#d9a5ff','#ffcee0']; for (let i=0;i<32;i++) { const piece=document.createElement('i'); piece.className='confetti'; piece.style.left='50%'; piece.style.top='42%'; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*460}px`); piece.style.setProperty('--y',`${Math.random()*260+55}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*720}deg`); piece.style.animationDelay=`${Math.random()*.14}s`; document.querySelector('.game').appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
     function showNote(index) { launchConfetti(); const m = messages[index]; noteTitle.textContent = m.title; noteText.textContent = m.text; noteIcon.textContent = m.icon; next.textContent = index === 2 ? 'Sürpriz mektubunu aç 🫣' : 'Sonraki aşama ✦'; note.classList.add('show'); next.focus(); }
