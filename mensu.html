@@ -155,7 +155,7 @@
     </div>
     <div class="surprise" id="surprise" aria-live="polite" aria-label="Açılan kalpli mektup">
       <div class="letter-scene"><div class="envelope-letter" id="envelope-letter"><div class="letter-paper"><strong>Mensure'me</strong><span>Kalbimin sahibine… 🩷</span></div><div class="flap"></div><button class="seal" id="seal" type="button" aria-label="Kalp mührünü basılı tutup yukarı kaydır">💌</button></div></div>
-      <p class="opening-copy" id="opening-copy">Mektubu açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷</p>
+      <p class="opening-copy" id="opening-copy">Mektubunu açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷</p>
     </div>
   </main>
   <script>
@@ -179,14 +179,14 @@
       { title: 'Tüm kalpler senin!', icon: '💌', text: 'Bu minik oyunun sonuna geldin, ama sana olan sevgim her gün daha da kuvvetleniyor. O zaman şimdi sürpriz mektubunu açmanın tam zamanı.' }
     ];
     function launchConfetti() { const colors=['#ff6397','#ff9fbd','#ffd66e','#d9a5ff','#ffcee0']; for (let i=0;i<32;i++) { const piece=document.createElement('i'); piece.className='confetti'; piece.style.left='50%'; piece.style.top='42%'; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*460}px`); piece.style.setProperty('--y',`${Math.random()*260+55}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*720}deg`); piece.style.animationDelay=`${Math.random()*.14}s`; document.querySelector('.game').appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
-    function showNote(index) { launchConfetti(); const m = messages[index]; noteTitle.textContent = m.title; noteText.textContent = m.text; noteIcon.textContent = m.icon; next.textContent = index === 2 ? 'Sürpriz mektubu aç 🫣' : 'Sonraki aşama ✦'; note.classList.add('show'); next.focus(); }
+    function showNote(index) { launchConfetti(); const m = messages[index]; noteTitle.textContent = m.title; noteText.textContent = m.text; noteIcon.textContent = m.icon; next.textContent = index === 2 ? 'Sürpriz mektubunu aç 🫣' : 'Sonraki aşama ✦'; note.classList.add('show'); next.focus(); }
     function goTo(stageNumber) { currentStage = stageNumber; document.querySelector('.game').classList.remove('welcome-screen'); stages.forEach(s => s.classList.remove('active')); document.querySelector(`#stage-${stageNumber}`).classList.add('active'); progress.forEach((p,i) => p.classList.toggle('active', i < stageNumber)); }
     startGame.addEventListener('click', () => goTo(1));
     restart.addEventListener('click', () => window.location.reload());
     let finalConfettiTimer;
     function launchFinalConfetti() { const finalStage=document.querySelector('#stage-final'); const colors=['#ff6195','#ff9fbd','#ffd66e','#caa1ff','#fff']; for (let i=0;i<20;i++) { const piece=document.createElement('i'); piece.className='final-confetti'; piece.style.left=`${38+Math.random()*24}%`; piece.style.top=`${20+Math.random()*25}%`; piece.style.background=colors[i%colors.length]; piece.style.setProperty('--x',`${(Math.random()-.5)*360}px`); piece.style.setProperty('--y',`${Math.random()*290+110}px`); piece.style.setProperty('--r',`${(Math.random()-.5)*700}deg`); piece.style.animationDelay=`${Math.random()*.12}s`; finalStage.appendChild(piece); piece.addEventListener('animationend',()=>piece.remove()); } }
     function showFinal() { launchConfetti(); clearInterval(finalConfettiTimer); stages.forEach(s => s.classList.remove('active')); document.querySelector('#stage-final').classList.add('active'); progress.forEach(p => p.classList.add('active')); launchFinalConfetti(); finalConfettiTimer=setInterval(launchFinalConfetti,950); }
-    function openSurprise() { opened=false; envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Mektubu açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷'; surprise.classList.add('show'); }
+    function openSurprise() { opened=false; envelopeLetter.style.transform='translateY(0)'; openingCopy.textContent='Mektubunu açmak için kalp mührüne basılı tutarak yukarı kaydır 🩷'; surprise.classList.add('show'); }
     let pulling=false, startY=0, opened=false;
     seal.addEventListener('pointerdown', event => { if (opened) return; pulling=true; startY=event.clientY; seal.setPointerCapture(event.pointerId); openingCopy.textContent='Harika gidiyor… biraz daha yukarı! ✦'; });
     seal.addEventListener('pointermove', event => { if (!pulling || opened) return; const distance=Math.max(0,Math.min(96,startY-event.clientY)); envelopeLetter.style.transform=`translateY(-${distance}px)`; if (distance>62) finishEnvelope(); });
